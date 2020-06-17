@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Stop watch</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
+    .stop-watch {
+      font-family: 'Source Code Pro', monospace;
+      text-align: center;
+      font-size: 3em;
+      padding: 30px;
+    }
+
+    .control {
+      width: 300px;
+      padding: 5px;
+      margin-top: 15px;
+      font-size: 36px;
+      font-weight: bold;
+      border: 2px solid #f44336;
+      border-radius: 4px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .control:hover {
+      background: #f44336;
+      color: aliceblue;
+    }
+  </style>
+  <title>Stop watch</title>
+</head>
+<body>
+  <div class="stop-watch">
+    <div class="display">00:00:00</div>
+    <button class="control">Start</button>
+  </div>
+  <script>
+    const $controlBtn = document.querySelector('.control');
+    const $display = document.querySelector('.display');
+
+    $controlBtn.onclick = () => {
+      $controlBtn.textContent = $controlBtn.textContent === 'Start' ? 'Stop' : 'Start';
+
+      let [min1, min2, , sec1, sec2, , mSec1, mSec2] = [...$display.textContent];
+console.log(min1);
+
+      const timeCount = setInterval(() => {
+
+        if ($controlBtn.textContent === 'Start') {
+          clearInterval(timeCount);
+          return;
+        }
+        mSec2++;
+        if (mSec2 > 9) {
+          mSec1++;
+          mSec2 = 0;
+        }
+        if (mSec1 > 9) {
+          sec2++;
+          mSec1 = 0;
+        }
+        if (sec2 > 9) {
+          sec1++;
+          sec2 = 0;
+        }
+        if (sec1 > 5) {
+          min2++;
+          sec1 = 0;
+        }
+        if (min2 > 9) {
+          min1++;
+          min2 = 0;
+        }
+        if (min1 > 5) {
+          min1 = 0;
+        }
+
+        $display.textContent = `${min1}${min2}:${sec1}${sec2}:${mSec1}${mSec2}`;
+
+      }, 100);
+    };
+  </script>
+</body>
+</html>
+
+
+<!-- $control.onclick = () => {
+  $control.textContent = $control.textContent === 'Start' ? 'Stop' : 'Start';
+
+  let [min1, min2, , sec1, sec2, , mSec1, mSec2] = [...$display.textContent];
+  // 배열 디스트럭처링 할당을 사용해서 각 변수에 스프레드 문법을 사용해서 문자열을 풀어서 한글자씩 나온거를 각 변수에 할당했다.
+  // 여기서 "배열 디스크럭처링 할당" 이란 것은, 할당 연산자 좌변에 배열의 형태로 변수를 선언해줘야 하고, 
+  // 우변에는 배열이 와야 하는데, 스프레드 문법에 [ ]로 감싸서 배열로 만들어서 우변에 넣었다. 
+
+  console.log(min1);
+  console.log(min2);
+  console.log(sec1);
+  console.log(sec2);
+  console.log(mSec1);
+  console.log(mSec2);
+
+  console.log($display.textContent);
+  console.log(typeof $display.textContent);
+
+  const timeCount = setInterval(() => {
+
+    if ($control.textContent === 'Start') {
+      clearInterval(timeCount);
+    }
+    mSec2++;
+    if (mSec2 > ) {
+
+    }
+    if (mSec1 > ) {
+
+    }
+    if (sec2 > 9) {
+      sec1++;
+      sec2 = 0;
+    }
+    if (sec1 > 5) {
+      min2++;
+      sec1 = 0;
+      sec2 = 0;
+    }
+    if (min2 > 9) {
+      min1++;
+      min2 = 0;
+      sec1 = 0;
+      sec2 = 0;
+    }
+    if (min1 > 5) {
+      min1 = 0;
+      min2 = 0;
+      sec1 = 0;
+      sec2 = 0;
+    }
+
+
+  }, 100); -->
