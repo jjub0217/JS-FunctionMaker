@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Counter</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 130px;
+            margin: 20px auto;
+            font-size: 24px;
+            color: #3f51b5;
+        }
+
+        button {
+            padding: 5px 10px;
+            font-size: 24px;
+            border-radius: 5px;
+            color: #3f51b5;
+            border-color: #3f51b5;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .counter {
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="increase">+</button>
+        <div class="counter">0</div>
+        <button class="decrease">-</button>
+    </div>
+
+    <script>
+        const $increase = document.querySelector('.increase');
+        const $decrease = document.querySelector('.decrease');
+        const $counter = document.querySelector('.counter');
+        const $container = document.querySelector('.container');
+
+
+        const counter = () => {
+            // 자유변수
+            let num = 0;
+
+            return {
+                //  ┌ 클로저 ----------┐
+                plus() { //             │
+                    return ++num; //    │
+                }, //                   │
+                minus() { //            │
+                    if (num <= 0) { //  │
+                        return num; //  │
+                    } //                │
+                    return --num; //    │
+                } // -------------------┘
+            }
+        }
+
+
+        // obj = 객체.
+        // obj에 plus 와 minus 라는 메소드가 포함된 객체가 담긴다.
+        const obj = counter();
+
+        // container 에 이벤트 위임 : increase 버튼과 decrease 버튼에 이벤트 부여
+        $container.onclick = (e) => {
+            if (!e.target.matches('.container > button')) return;
+
+            // 1번 방법 : 클로저를 사용할 시
+            // ┌ container 안에 있는 요소들 중에 increase 라는 클래스가 포함된게 있느냐? 있으면 textContent 안에다가 obj 라는 객체안에 담긴 plus 메소드를 할당시켜 호출한다
+            // │ : 없으면 obj 라는 객체안에 담긴  minus 메소드를 할당시켜 호출한다.  
+            e.target.classList.contains('increase') ? $counter.textContent = obj.plus() : $counter.textContent = obj.minus();
+            
+            
+            // 2번 방법 : 클로저를 사용 안할 시
+            /* if (+$counter.textContent < 0) {
+                 $counter.textContent = 0
+             }
+             +$counter.textContent < 0 ? $counter.textContent = 0 : --$counter.textContent;
+             console.log($counter.textContent);
+             */
+        }
+    </script>
+</body>
+
+</html>
