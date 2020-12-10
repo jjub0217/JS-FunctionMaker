@@ -1,13 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Star rating</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Open Sans';
+      font-weight: 300;
+    }
+
+    .title {
+      color: #db5b33;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    .star-rating-widget {
+      width: 300px;
+      text-align: center;
+      margin: 0px auto;
+    }
+
+    .star-rating-widget>.star-checkbox {
+      display: none;
+    }
+
+    .star-rating-widget>.star-checkbox:checked+.star-checkbox-label .colored {
+      animation: enlarge 0.5s ease-in-out forwards;
+    }
+
+    .star-rating-widget>.star-checkbox:checked+.star-checkbox-label:nth-of-type(2)>.colored {
+      animation-delay: 0.1s;
+    }
+
+    .star-rating-widget>.star-checkbox:checked+.star-checkbox-label:nth-of-type(3)>.colored {
+      animation-delay: 0.2s;
+    }
+
+    .star-rating-widget>.star-checkbox:checked+.star-checkbox-label:nth-of-type(4)>.colored {
+      animation-delay: 0.3s;
+    }
+
+    .star-rating-widget>.star-checkbox:checked+.star-checkbox-label:nth-of-type(5)>.colored {
+      animation-delay: 0.4s;
+    }
+
+    .star-rating-widget>.star-checkbox-label {
+      position: relative;
+      display: inline-block;
+      margin: 8px 2px;
+      color: #dcdcdc;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+    }
+
+    .star-rating-widget>.star-checkbox-label:hover,
+    .star-rating-widget>.star-checkbox-label.hovered {
+      color: #a7a7a7;
+    }
+
+    .star-rating-widget>.star-checkbox-label>i {
+      font-size: 40px;
+    }
+
+    .star-rating-widget>.star-checkbox-label>i.colored {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #db5b33;
+      transform: scale(0);
+    }
+
+    @keyframes enlarge {
+      0% {
+        transform: scale(0);
+      }
+
+      70% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <script>
-      
-    </script>
+  <!-- <i class='bx bxs-face-mask' style="font-size: 48px; color: red"></i> -->
+  <h1 class="title">Star rating</h1>
+  <form class="star-rating-widget">
+    <input type="checkbox" class="star-checkbox" id="1" />
+    <label class="star-checkbox-label" for="1">
+      <i class="bx bxs-star"></i>
+      <i class="bx bxs-star colored"></i>
+    </label>
+    <input type="checkbox" class="star-checkbox" id="2" />
+    <label class="star-checkbox-label" for="2">
+      <i class="bx bxs-star"></i>
+      <i class="bx bxs-star colored"></i>
+    </label>
+    <input type="checkbox" class="star-checkbox" id="3" />
+    <label class="star-checkbox-label" for="3">
+      <i class="bx bxs-star"></i>
+      <i class="bx bxs-star colored"></i>
+    </label>
+    <input type="checkbox" class="star-checkbox" id="4" />
+    <label class="star-checkbox-label" for="4">
+      <i class="bx bxs-star"></i>
+      <i class="bx bxs-star colored"></i>
+    </label>
+    <input type="checkbox" class="star-checkbox" id="5" />
+    <label class="star-checkbox-label" for="5">
+      <i class="bx bxs-star"></i>
+      <i class="bx bxs-star colored"></i>
+    </label>
+  </form>
+  <script>
+
+    const $starRating = document.querySelector('.star-rating-widget');
+    const $starCheckboxes = document.querySelectorAll('.star-checkbox');
+    const $starCheckLables = document.querySelectorAll('.star-checkbox-label');
+    
+    // 1. 클릭하면 빨갛게 변하는 이벤트 코딩
+    $starRating.onchange = ({ target: { id  } }) => {
+      // console.log(e.target); // <- input 에서 이벤트가 발생하는 것을 확인
+
+      // ┌> 몇번 인풋에 id 를 보면, 몇번이 선택되었는지 확인.
+      //  console.log(e.target.id);
+      // 선택된것이 빨갛게 변해야 한다.  체크박스의 박스가 체크드 되게 만들면 된다.
+      // const $starCheckboxLables = document.querySelectorAll('.star-checkbox-label')
+      // const $starCheckboxes = document.querySelectorAll('.star-checkbox')
+
+      $starCheckboxes.forEach($checkbox => {
+        // console.log($checkbox.id, e.target.id);
+        $checkbox.checked = $checkbox.id <= id
+
+      })
+    }
+
+
+
+    // 2. 마우스 올라갔을때 그게 몇번째인지 뭔지 안다음에 hovered 클래스를 붙여줘야 하는 이벤트 코드를 코딩해야 한다.
+    $starRating.onmouseover = (e) => {
+      if (!e.target.matches('.star-checkbox-label > i')) return;
+      console.log(e.target);
+      console.log(e.target.parentNode.previousElementSibling.id);
+
+      $starCheckLables.forEach($lableYoso => {
+        if ($lableYoso.previousElementSibling.id <= e.target.parentNode.previousElementSibling.id) {
+          $lableYoso.classList.add('hovered')
+        }
+      })
+    }
+
+    // 3. hovered 클래스 제거
+    $starRating.onmouseout = ({ target: { id } }) => {
+      if (!e.target.matches('.star-checkbox-label > i')) return;
+
+      $starCheckLables.forEach($lableYoso => {
+        $lableYoso.classList.remove('hovered');
+      })
+    }
+  </script>
 </body>
+
 </html>
