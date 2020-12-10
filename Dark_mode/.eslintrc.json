@@ -30,6 +30,7 @@
       "arrow-parens": ["error", "as-needed"], // a => {}
       "no-restricted-syntax": [0, "ForOfStatement"],
       "no-trailing-spaces" : 0,
+      "spaced-comment": 0,
       "no-param-reassign": ["error", { "props": false }],
       "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
     }
