@@ -109,17 +109,23 @@
 
 
     window.onload = () => {
-        // const theme = localStorage.getItem('theme');
+      // const theme = localStorage.getItem('theme'); ──────────┐
+      //                                                        │
+      //                                                        │
+      // ┌  if(theme) {  ────────────────────────────────────┐  │
+      // │  document.body.classList.add('dark')              │  │
+      // │ }else{                                            │  │
+      // │  document.body.classList.remove('dark')           │  │
+      // └ } ────────────────────────────────────────────────┘  │
+      //                                                        │
+      // ┌ 1. 바로 위 코드 보다, 바로 아래 코드로 하는게 좋다. ┐  │
+      // └ document.body.classList.toggle('dark', theme) ────┘  │
+      // ───────────────────────────────────────────────────────┘
 
-        // if(theme) { 
-        //   document.body.classList.add('dark')
-        // }else{
-        //   document.body.classList.remove('dark')
-        // }
-
-        // document.body.classList.toggle('dark', theme)
-          document.body.classList.toggle('dark', localStorage.getItem('theme'))
-          document.body.style.display = 'block';
+       // 2. 코드정리 ─────────────────────────────────────────────────────────────┐
+          document.body.classList.toggle('dark', localStorage.getItem('theme'))// │ 
+          document.body.style.display = 'block';//                                │
+        // ───────────────────────────────────────────────────────────────────────┘
         }
 
 
