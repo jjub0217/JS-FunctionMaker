@@ -1,0 +1,42 @@
+body {
+    font-family: sans-serif;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    margin-top: -17px;
+    margin-left: -2px;
+    border-radius: 50%;
+    border: 1px solid rgb(156, 156, 156);
+    background: #eee;
+  }
+  
+  input[type="range"] {
+    appearance: none;
+    margin-bottom: 10px;
+    width: 150px;
+    height: 3px;
+    background: #aaa;
+    border-radius: 20px;
+    border: 1px solid rgb(126, 125, 125);
+  }
+  input[type="range"]:focus {
+    outline: none;
+  }
+  
+  input[type="number"] {
+    width: 40px;
+    height: 100%;
+  }
+  
+  #tickmarks {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    height: 10px;
+    margin-bottom: -5px;
+    margin-left: 5px;
+  }
+  
