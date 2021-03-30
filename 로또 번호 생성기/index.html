@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로또 번호 생성기</title>
+    <style>
+      .ball {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        background-color: #ffc107;
+        border-radius: 50%;
+        line-height: 80px;
+        font-size: 50px;
+        margin: 5px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+
+    <script>
+
+    
+      // let numbers = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] // <- 이렇게 45번 까지 나열하면 숫자를 누락할 가능성이 있기 때문에 위험하다.
+      let numbers = [];
+      for (let i = 1; i <= 45; i++) {
+        numbers.push(i);
+      }
+
+
+      // let randomNumber = Math.floor(Math.random()*45); // <- 45 에서 숫자가 바뀔수 있으니 이렇게 이뮤터블한 원시값을 주면 안된다.
+      let randomNumbers = [];
+      for (let i = 0; i < 6; i++) {
+        let randomIndex = Math.floor(Math.random() * numbers.length); // <- 랜덤 인덱스 구하기
+        let randomNumber = numbers[randomIndex]; // <- 뽑은 숫자
+        randomNumbers.push(randomNumber); // <- 뽑은 숫자 배열
+
+        numbers.splice(randomIndex, 1); // <- 뽑은 숫자 제거된 원본 배열
+      }
+
+      // 숫자 오름차순
+      randomNumbers.sort((num1, num2) => num1 < num2 ? -1 : num1 > num2 ? 1 : 0 );
+
+      for (let i = 0; i < 6; i++) {
+        document.write(`<span class="ball"> ${randomNumbers[i]} </span>`);
+      }
+      console.log(randomNumbers);
+      console.log(num1);
+
+
+
+
+
+    </script>
+  </body>
+</html>
