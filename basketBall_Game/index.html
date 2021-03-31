@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      input {
+        border: 0;
+        background-color: black;
+        text-align: center;
+      }
+      .section {
+        width: 400px;
+        height: 200px;
+        background-color: #04b404;
+        display: flex;
+      }
+      .score {
+        width: 396px;
+        margin: 2px;
+        height: 196px;
+        border: 2px solid white;
+      }
+      .counterNumber {
+        text-align: center;
+        margin: 10px 0;
+        color: white;
+      }
+
+      #counterInput {
+        width: 25px;
+        height: 30px;
+        color: white;
+        font-size: 16px;
+      }
+
+      .scoreNumber {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .computer,
+      .user {
+        width: 150px;
+        height: 85px;
+        border: 1px solid;
+        text-align: center;
+        color: white;
+      }
+
+      .title {
+        margin-bottom: 5px;
+        margin-top: 10px;
+      }
+
+      #computerInput,
+      #userInput {
+        width: 70px;
+        height: 40px;
+        color: yellow;
+        font-size: 33px;
+      }
+
+      .result {
+        text-align: center;
+        color: white;
+      }
+
+      .control {
+        background-color: #525252;
+        width: 400px;
+        height: 100px;
+      }
+
+      .control {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+      }
+      .control p {
+        margin: 0;
+        color: white;
+      }
+
+      .control button {
+        padding: 7px 10px;
+        margin-top: 5px;
+        border: 0;
+        width: 70px;
+        color: #797777;
+        cursor: pointer;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <p>서로 번갈아가면서 슛을 쏴서 높은 점수를 내는 편이 승리</p>
+    <div class="section">
+      <div class="score">
+        <div class="counterNumber">
+          <span>남은 슛 횟수</span>
+          <input type="text" name="" id="counterInput" value="15" />
+        </div>
+        <div class="scoreNumber">
+          <div class="computer">
+            <p class="title">컴퓨터</p>
+            <input type="text" name="" id="computerInput" value="0" />
+          </div>
+          <div class="user">
+            <p class="title">사용자</p>
+            <input type="text" name="" id="userInput" value="0" />
+          </div>
+        </div>
+        <p class="result"></p>
+      </div>
+    </div>
+    <div class="control">
+      <div class="comControl">
+        <p class="shootText">컴퓨터</p>
+        <button class="comShoot">슛하기</button>
+      </div>
+      <div class="userControl">
+        <p class="shootUser">사용자</p>
+        <button class="userShoot twoShoot">2점슛</button>
+        <button class="userShoot threeShoot">3점슛</button>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
